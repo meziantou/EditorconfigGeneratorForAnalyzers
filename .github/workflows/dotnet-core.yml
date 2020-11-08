@@ -18,7 +18,15 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.100-rc.2.20479.15'
-      
+    
+    - name: test
+      shell: pwsh
+      run: |
+        $text = Get-Content -Path "EditorconfigGeneratorForAnalyzers/wwwroot/index.html"
+        $text = $text.Replace('<base href="/" />', '<base href="/editor" />')
+        Set-Content -Path "EditorconfigGeneratorForAnalyzers/wwwroot/index.html" -Value $text
+        Get-Content -Path "EditorconfigGeneratorForAnalyzers/wwwroot/index.html"
+    
     - name: Publish
       run: dotnet publish EditorconfigGeneratorForAnalyzers/EditorconfigGeneratorForAnalyzers.csproj --configuration Release
     
