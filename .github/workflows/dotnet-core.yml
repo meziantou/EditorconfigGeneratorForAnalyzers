@@ -19,7 +19,7 @@ jobs:
       with:
         dotnet-version: '5.0.100-rc.2.20479.15'
     
-    - name: test
+    - name: Update base path
       shell: pwsh
       run: |
         $text = Get-Content -Path "EditorconfigGeneratorForAnalyzers/wwwroot/index.html"
@@ -28,7 +28,7 @@ jobs:
         Get-Content -Path "EditorconfigGeneratorForAnalyzers/wwwroot/index.html"
     
     - name: Publish
-      run: dotnet publish EditorconfigGeneratorForAnalyzers/EditorconfigGeneratorForAnalyzers.csproj --configuration Release
+      run: dotnet publish EditorconfigGeneratorForAnalyzers/EditorconfigGeneratorForAnalyzers.csproj --configuration Debug
     
     - name: GitHub Pages action
       if: ${{ github.ref == 'refs/heads/main' }}
@@ -36,7 +36,7 @@ jobs:
       with:
         github_token: ${{ secrets.PUBLISH_TOKEN }}
         publish_branch: gh-pages
-        publish_dir: EditorconfigGeneratorForAnalyzers/bin/Release/net5.0/publish/wwwroot
+        publish_dir: EditorconfigGeneratorForAnalyzers/bin/Debug/net5.0/publish/wwwroot
         allow_empty_commit: false
         keep_files: false
         force_orphan: true
