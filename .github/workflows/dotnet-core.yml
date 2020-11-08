@@ -23,7 +23,7 @@ jobs:
       shell: pwsh
       run: |
         $text = Get-Content -Path "EditorconfigGeneratorForAnalyzers/wwwroot/index.html"
-        $text = $text.Replace('<base href="/" />', '<base href="/editor" />')
+        $text = $text.Replace('<base href="/" />', '<base href="/EditorconfigGeneratorForAnalyzers/" />')
         Set-Content -Path "EditorconfigGeneratorForAnalyzers/wwwroot/index.html" -Value $text
         Get-Content -Path "EditorconfigGeneratorForAnalyzers/wwwroot/index.html"
     
